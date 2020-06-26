@@ -4,9 +4,10 @@
   console.log('links:', links);
 }); */
 
-/* Pytania do mentora
-  -W inspektorze nadawanie i usuwanie klas przy kliknieciu nie dziala jak nalezy.
-  -
+/* Pytania do mentora na Piątek 03.07.2020
+  - W inspektorze nadawanie i usuwanie klas przy kliknieciu nie dziala jak nalezy.
+  - Problem z git. Przy probie zapisania commita otrzymuje komunikat warning "There are too many unreachable loose objects; run 'git prune' to remove them."
+    Should I try again? (y/n) wybor Yes powtarza pytanie wybor No zapisuje commit i wszystko dziala poprawnie. O co c'mon :) ?
 */
 
 const titleClickHandler = function(event){
