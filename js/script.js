@@ -1,11 +1,12 @@
-{
-'use strict';
+
+  'use strict';
   /* Pytania do mentora na Piątek 03.07.2020
   - W inspektorze nadawanie i usuwanie klas przy kliknieciu nie dziala jak nalezy.
   - Problem z git. Przy probie zapisania commita otrzymuje komunikat warning "There are too many unreachable loose objects; run 'git prune' to remove them."
     Should I try again? (y/n) wybor Yes powtarza pytanie wybor No zapisuje commit i wszystko dziala poprawnie. O co c'mon :) ?
   - W module jest mowa aby zamykac kod w nawiasach klamrowych. Czy nawiasy klamrowe wstawiac od 1 lini kodu a konczyc na ostatniej ? chodzi przykladowo o use strict
   - Jak wlasciwie dziala this na poczatku funkcji.
+  - Przelaczanie artykulow powoduje skakanie strony gora dol.
   */
 
   const titleClickHandler = function(event){
@@ -45,13 +46,6 @@
     targetArticle.classList.add('active');
   }
 
-  const links = document.querySelectorAll('.titles a');
-
-  for(let link of links){
-    link.addEventListener('click', titleClickHandler);
-  }
-
-
     /* NEXT STEP */
 
   const optArticleSelector = '.post',
@@ -64,31 +58,38 @@
 
     const titleList = document.querySelector(optTitleListSelector).innerHTML = '';
 
-    /* for each article */
-    // mozliwa zamiana argumentu .post na nazwe stalej optArticleSelector
-    const articles = document.querySelectorAll('.post');
+    /* [DONE] for each article */
+
+    const articles = document.querySelectorAll(optArticleSelector);
 
     for(let article of articles){
 
-    }
+      /* [DONE] get the article id */
 
-      /* get the article id */
+      const articleId = article.getAttribute('id');
 
-      const articleId = element.getAttribute('article');
-
-      /* find the title element */
+      /* [DONE] find the title element */
+      /* [DONE] get the title from the title element */
 
       const articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
-      /* get the title from the title element */
-
-      /* create HTML of the link */
+      /* [DONE] create HTML of the link */
 
       const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-      console.log(linkHTML);
-      /* insert link into titleList */
+
+      /* [DONE] insert link into titleList */
+
+      const titleList = document.querySelector(optTitleListSelector);
+      titleList.insertAdjacentHTML('beforeend', linkHTML);
+
+    }
+
+    const links = document.querySelectorAll('.titles a');
+
+    for(let link of links){
+      link.addEventListener('click', titleClickHandler);
+    }
+
   }
 
-generateTitleLinks();
-
-}
+  generateTitleLinks();
