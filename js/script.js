@@ -1,15 +1,17 @@
 'use strict';
 
 /* nie do konca rozumiem:
- -tworzenie linka np linia 103, 
+ -tworzenie linka np linia 103, 135
  -pobieranie, uzywanie, selektorow atrybutow np w funkcji tagClickHandler
- - 
-*/
+ -dlaczego tworzymy pusty html ? nie mozemy go zadeklarowac pozniej ? chodzi o zakres zmiennej ?
+ -/* [NEW] find list of tags in right column - const tagList = document.querySelector('.tags'); zamiast tags dalem stala optTagsListSelector = '.tags.list'; bo pokazywalo ze nie jest uzywana.
+ */
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post-author';
+  optArticleAuthorSelector = '.post-author',
+  optTagsListSelector = '.tags.list';
 
 const titleClickHandler = function(event){
   event.preventDefault();
@@ -78,6 +80,9 @@ for(let link of links){
 
 
 function generateTags(){
+  /* [NEW] create a new variable allTags with an empty object */
+  
+  let allTags = {};
   
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
@@ -93,7 +98,7 @@ function generateTags(){
     
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-   
+    
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
     
@@ -106,12 +111,37 @@ function generateTags(){
       /* add generated code to html variable */
       html = html + linkHTML;
       
+      /* [NEW] check if this link is NOT already in allTags */
+      if(!allTags[tag]) {
+        /* [NEW] add tag to allTags object */
+        allTags[tag] = 1;
+      } else {
+        allTags[tag] ++;
+      }
     }/* END LOOP: for each tag */
 
     /* insert HTML of all the links into the tags wrapper */
     tagsWrapper.insertAdjacentHTML('beforeend', html);
     
   }/* END LOOP: for every article: */ 
+  
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector(optTagsListSelector);
+  
+  /* [NEW] create variable for all links HTML code */
+  let allTagsHTML = '';
+
+  /* [NEW] START LOOP: for each tag in allTags: */
+  for(let tag in allTags){
+
+    /* [NEW] generate code of a link and add it to allTagsHTML */
+    //allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+    allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + '(' + allTags[tag] + ')' + '</a></li> ';
+    console.log(allTagsHTML);
+  }/* [NEW] END LOOP: for each tag in allTags: */
+  /* [NEW] add HTML from allTagsHTML to AllTags */
+  tagList.innerHTML = allTagsHTML;
+
 }
 generateTags();
 
@@ -175,7 +205,6 @@ function generateAuthors(){
     
     /* find author wrapper */
     const authorWrapper = article.querySelector(optArticleAuthorSelector);
-    console.log(authorWrapper);
     
     /* make html variable with empty string */
     let html ='';
