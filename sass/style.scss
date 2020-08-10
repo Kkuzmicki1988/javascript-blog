@@ -97,7 +97,7 @@ body {
 
 .authors {
   li {
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
 }
 
@@ -121,4 +121,47 @@ body {
   p {
     margin: 0 10px 0 0;
   }
+}
+
+/* Tag cloud and authors */
+
+.sidebar {
+  .tags {
+    li {
+      display: inline;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+  .authors {
+    li{
+    list-style-type: none;
+    a {
+      text-decoration: none;
+      font-size: 17px;
+      color: #9b59b6;
+    }
+    }
+  }
+} 
+
+.tag-size-very-small {
+  font-size: 15px;
+  color: #34495e;
+}
+
+.tag-size-small {
+  font-size: 18px;
+  color: #3498db;
+}
+
+.tag-size-medium {
+  font-size: 21px;
+  color: #ff9f1a;
+}
+
+.tag-size-big {
+  font-size: 24px;
+  color: #ff3838;
 }

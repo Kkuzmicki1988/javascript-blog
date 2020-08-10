@@ -83,7 +83,7 @@ body {
 
 /* Authors */
 .authors li {
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 /* Post */
@@ -106,5 +106,44 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+
+/* Tag cloud and authors */
+.sidebar .tags li {
+  display: inline;
+}
+
+.sidebar .tags li a {
+  text-decoration: none;
+}
+
+.sidebar .authors li {
+  list-style-type: none;
+}
+
+.sidebar .authors li a {
+  text-decoration: none;
+  font-size: 17px;
+  color: #9b59b6;
+}
+
+.tag-size-very-small {
+  font-size: 15px;
+  color: #34495e;
+}
+
+.tag-size-small {
+  font-size: 18px;
+  color: #3498db;
+}
+
+.tag-size-medium {
+  font-size: 21px;
+  color: #ff9f1a;
+}
+
+.tag-size-big {
+  font-size: 24px;
+  color: #ff3838;
 }
 /*# sourceMappingURL=style.css.map */
